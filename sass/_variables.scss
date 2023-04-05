@@ -1,0 +1,26 @@
+// COLORS
+$color-primary-transfer: #ffb003;
+$color-secondary-transfer: #ffcb03;
+
+$color-primary-loan: #39b385;
+$color-secondary-loan: #9be15d;
+
+$color-primary-close: #e52a5a;
+$color-secondary-close: #ff585f;
+
+// GRADIENTS
+$op--transfer-gradient: linear-gradient(
+  to right bottom,
+  $color-primary-transfer,
+  $color-secondary-transfer
+);
+$op--loan-gradient: linear-gradient(
+  to right bottom,
+  $color-primary-loan,
+  $color-secondary-loan
+);
+$op--close-gradient: linear-gradient(
+  to right bottom,
+  $color-primary-close,
+  $color-secondary-close
+);
