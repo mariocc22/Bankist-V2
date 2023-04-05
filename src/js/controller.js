@@ -1,4 +1,6 @@
 import userView from "../js/views/userView.js";
+import balanceView from "./views/balanceView.js";
+import movementsView from "./views/movementsView.js";
 import * as model from "../js/model.js";
 
 const controlMovements = function () {};
@@ -17,6 +19,8 @@ const controlUserView = function () {
 
   // 3) render user information and the app
   userView.addHandlerAppView(currentUser);
+  balanceView.generateMarkup(currentUser);
+  movementsView.generateMarkup(currentUser);
 };
 
 // Init App

@@ -55,7 +55,7 @@ const account3 = {
     "2020-07-26T12:01:20.894Z",
   ],
   currency: "MXN",
-  locale: "es-MEX",
+  locale: "es-MX",
 };
 
 export const accounts = [account1, account2, account3];
