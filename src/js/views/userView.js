@@ -1,6 +1,4 @@
-import View from "./View.js";
-
-class UserView extends View {
+class UserView {
   _appView = document.querySelector(".app");
   _parentElement = document.querySelector(".nav-user");
   _userlabel = "User";
