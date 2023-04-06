@@ -39,11 +39,12 @@ class UserView {
   }
 
   addHandlerLoan(handler) {
-    this._loanForm.addEventListener("submit", function (e) {
+    this._loanForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const loan = +this.querySelector(".form__input--loan-amount").value;
-      this.reset();
+      const loan = +this._loanForm.querySelector(".form__input--loan-amount")
+        .value;
+      this._loanForm.reset();
 
       clearInterval(this._countdown);
       this._countdown = this.startLogOutTimer();
@@ -53,14 +54,14 @@ class UserView {
   }
 
   addHandlerTransfer(handler) {
-    this._transferForm.addEventListener("submit", function (e) {
+    this._transferForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const transfer = {
-        transferTo: this.querySelector(".form__input--to").value,
-        amount: +this.querySelector(".form__input--amount").value,
+        transferTo: this._transferForm.querySelector(".form__input--to").value,
+        amount: +this._transferForm.querySelector(".form__input--amount").value,
       };
-      this.reset();
+      this._transferForm.reset();
 
       clearInterval(this._countdown);
       this._countdown = this.startLogOutTimer();
