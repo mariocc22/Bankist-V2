@@ -1,4 +1,4 @@
-import { TIMER_DURATION } from "../config.js";
+import { TIMER_DURATION, TRANSACTION_DELAY } from "../config.js";
 
 class UserView {
   _appView = document.querySelector(".app");
@@ -7,6 +7,7 @@ class UserView {
   _loanForm = document.querySelector(".form--loan");
   _transferForm = document.querySelector(".form--transfer");
   _closeForm = document.querySelector(".form--close");
+  _spinner = document.querySelector(".container__spinner");
   _countdown = "";
   _sort = false;
 
@@ -49,7 +50,12 @@ class UserView {
       clearInterval(this._countdown);
       this._countdown = this.startLogOutTimer();
 
-      handler(loan);
+      this.spinner();
+
+      setTimeout(() => {
+        handler(loan);
+        this.spinner();
+      }, TRANSACTION_DELAY);
     });
   }
 
@@ -61,12 +67,18 @@ class UserView {
         transferTo: this._transferForm.querySelector(".form__input--to").value,
         amount: +this._transferForm.querySelector(".form__input--amount").value,
       };
+
       this._transferForm.reset();
 
       clearInterval(this._countdown);
       this._countdown = this.startLogOutTimer();
 
-      handler(transfer);
+      this.spinner();
+
+      setTimeout(() => {
+        handler(transfer);
+        this.spinner();
+      }, TRANSACTION_DELAY);
     });
   }
 
@@ -78,6 +90,33 @@ class UserView {
         handler(this._sort);
       }
     });
+  }
+
+  addHandlerCloseAccount(handler) {
+    this._closeForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const closeAcc = {
+        username: this._closeForm.querySelector(".form__input--user").value,
+        pin: +this._closeForm.querySelector(".form__input--pin").value,
+      };
+      this._closeForm.reset();
+      handler(closeAcc);
+    });
+  }
+
+  closeApp() {
+    this._appView.style.opacity = 0;
+    this._parentElement.querySelector(
+      ".welcome"
+    ).textContent = `Log in to get started`;
+  }
+
+  spinner() {
+    this._spinner.classList.toggle("hide-spinner");
+  }
+
+  errorMessage(message) {
+    alert(message);
   }
 
   startLogOutTimer() {

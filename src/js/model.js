@@ -26,6 +26,19 @@ export const addAccounts = function () {
   });
 };
 
+export const removeAccount = function (currentUser, accountToRemove) {
+  if (
+    currentUser.username === accountToRemove.username &&
+    currentUser.pin === accountToRemove.pin
+  ) {
+    const indexToRemove = bankAccounts.findIndex(
+      (acc) => acc.username === currentUser.username
+    );
+    bankAccounts.splice(indexToRemove, 1);
+    return true;
+  }
+};
+
 export const requestLoan = function (loan, account) {
   const income = Math.floor(loan);
   account.loanApproved = false;

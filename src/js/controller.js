@@ -16,7 +16,11 @@ const controlTransfer = function (transfer) {
   const currentUser = userCredentials.getcurrentUserAccount(model.bankAccounts);
 
   // 1) check if the user to transfer exist
-  if (!model.requestTransfer(transfer, currentUser)) return;
+  if (!model.requestTransfer(transfer, currentUser)) {
+    userView.errorMessage("Account does not exist....");
+    return;
+  }
+
   updateUI(currentUser);
 };
 
@@ -25,8 +29,25 @@ const controlLoans = function (loan) {
   const currentUser = userCredentials.getcurrentUserAccount(model.bankAccounts);
 
   // 2) check if the loan was approved, update the UI based on that
-  if (!model.requestLoan(loan, currentUser)) return;
+  if (!model.requestLoan(loan, currentUser)) {
+    userView.errorMessage("Loan rejected!");
+    return;
+  }
   updateUI(currentUser);
+};
+
+const controlCloseAccount = function (account) {
+  // 1) get the current user
+  const currentUser = userCredentials.getUser();
+  if (!currentUser) return;
+
+  // 2) check if the account input is the same as the currentUser
+  if (!model.removeAccount(currentUser, account)) {
+    userView.errorMessage("Wrong user!");
+    return;
+  }
+  userCredentials.removeUser();
+  userView.closeApp();
 };
 
 const controlUserView = function (credentials) {
@@ -39,7 +60,10 @@ const controlUserView = function (credentials) {
     model.bankAccounts
   );
 
-  if (!userExist) return;
+  if (!userExist) {
+    userView.errorMessage("Incorrect Credentials!");
+    return;
+  }
 
   // 2) save current user in Localstorage
   userCredentials.setUser(userExist.username, userExist.pin);
@@ -64,6 +88,7 @@ const init = function () {
   userView.addHandlerLoan(controlLoans);
   userView.addHandlerTransfer(controlTransfer);
   userView.addHandlerSorting(controlSorting);
+  userView.addHandlerCloseAccount(controlCloseAccount);
 };
 
 init();
