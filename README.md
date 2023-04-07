@@ -9,4 +9,5 @@ Additionally, I am using SASS (Syntactically Awesome Style Sheets) for styling t
 Overall, the Bankist project rebuild using MVC and SASS will provide a more structured, modular, and maintainable codebase, making it easier to build and maintain modern web applications.
 
 ![APP VIEW](bankist-home.png)
+Loader after performing a transaction
 ![APP LOADING TRANSACTIONS](bankist-spinner.png)
