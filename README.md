@@ -7,3 +7,6 @@ To make the Bankist project even more robust and maintainable, I am rebuilding i
 Additionally, I am using SASS (Syntactically Awesome Style Sheets) for styling the Bankist project. SASS is a CSS preprocessor that provides powerful features like variables, mixins, and functions, making it easier to create reusable and maintainable CSS code.
 
 Overall, the Bankist project rebuild using MVC and SASS will provide a more structured, modular, and maintainable codebase, making it easier to build and maintain modern web applications.
+
+![APP VIEW](src\bankist-home.png)
+![APP LOADING TRANSACTIONS](src\bankist-spinner.png)
